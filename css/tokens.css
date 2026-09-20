@@ -1,0 +1,31 @@
+:root {
+  --cols: 20;
+  --cell: 64px;            /* overwritten by js/main.js */
+  --grid-x: 0px;
+  --scroll: 0;
+  --font-sans: Montserrat, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", Consolas, "SF Mono", monospace;
+  --fs-display: clamp(2.2rem, 4.5vw, 4.2rem);
+  --fs-h2: clamp(1.5rem, 3vw, 2.4rem);
+  --fs-body: 1rem;
+  --fs-small: 0.8125rem;
+  --fs-readout: 0.6875rem;
+  --t-fast: 180ms;
+  --t-mid: 800ms;
+}
+@media (max-width: 1199px) { :root { --cols: 16; } }
+@media (max-width: 767px)  { :root { --cols: 8; } }
+
+:root[data-theme="pm"] {
+  color-scheme: dark;
+  --ground: #0A0B0D; --surface: #1A1D21; --rule: #22262B; --text: #E6E8EB; --muted: #848C9C;
+  --accent: #A3E635; --refuse: #FF5F56; --gold: #E5B84A; --violet: #A78BFA;
+}
+:root[data-theme="am"] {
+  color-scheme: light;
+  --ground: #F6F7F9; --surface: #FFFFFF; --rule: #D9DEE5; --text: #111318; --muted: #6B7280;
+  --accent: #4D7C0F; --refuse: #C62828; --gold: #9A6B00; --violet: #6D4BD6;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-mid: 0ms; }
+}

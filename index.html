@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" data-theme="pm" data-state="live">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOESIS — a personal agent, measured before it is believed</title>
+<meta name="description" content="A personal AI agent that runs on your machine. Every tool call is judged before it runs; every number about it is measured.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230A0B0D'/%3E%3Crect x='4' y='4' width='8' height='8' fill='%23A3E635'/%3E%3C/svg%3E">
+<script>
+(function () {
+  var stored = null; try { stored = localStorage.getItem('noesis.theme'); } catch (e) {}
+  var dark = matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.dataset.theme = (stored === 'am' || stored === 'pm') ? stored : (dark ? 'pm' : 'am');
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var booted = false; try { booted = sessionStorage.getItem('noesis.booted') === '1'; } catch (e) {}
+  var forced = /[?&]boot\b/.test(location.search);
+  document.documentElement.dataset.state = (forced || (!reduced && !booted)) ? 'booting' : 'live';
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/grid.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/loader.css">
+</head>
+<body>
+<canvas id="sphere" aria-hidden="true"></canvas>
+<div id="veil" aria-hidden="true"></div>
+<div id="boot" class="boot mono" role="status" aria-live="polite">
+  <svg class="boot__line boot__line--top" viewBox="0 0 1520 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 H560 L580 60 H940 L960 40 H1520" vector-effect="non-scaling-stroke"/></svg>
+  <svg class="boot__line boot__line--bottom" viewBox="0 0 1520 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 H560 L580 20 H940 L960 40 H1520" vector-effect="non-scaling-stroke"/></svg>
+  <p class="boot__corner boot__tl">NOESIS // PERSONAL AGENT</p>
+  <p class="boot__corner boot__tr">PY 3.12+ · GIT · NO DOCKER</p>
+  <p class="boot__corner boot__tl2">STATUS CHECK <span data-boot-dots></span> <span data-boot-ok data-text="OK"></span></p>
+  <p class="boot__corner boot__tr2 boot__box">THEME: <span data-theme-label>PM</span></p>
+  <div class="boot__panel">
+    <pre class="boot__mark" data-boot-mark aria-label="NOESIS">███╗   ██╗ ██████╗ ███████╗███████╗██╗███████╗
+████╗  ██║██╔═══██╗██╔════╝██╔════╝██║██╔════╝
+██╔██╗ ██║██║   ██║█████╗  ███████╗██║███████╗
+██║╚██╗██║██║   ██║██╔══╝  ╚════██║██║╚════██║
+██║ ╚████║╚██████╔╝███████╗███████║██║███████║
+╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝╚══════╝</pre>
+    <p class="boot__title">//SYSTEM LOADING</p>
+    <div class="boot__row"><span class="boot__chip">PROGRESS</span><div class="boot__bar"><div class="boot__fill" data-boot-fill></div></div><span class="boot__pct" data-boot-pct>0%</span></div>
+    <p class="boot__hint">&lt; esc skips &gt;</p>
+  </div>
+  <p class="boot__corner boot__bl">LOADING FONTS, THE RENDERER AND 14,000 POINTS.<br>THE PAGE IS STATIC; NOTHING IS SENT ANYWHERE.</p>
+  <button class="boot__skip" type="button" data-boot-skip>SKIP LOADING</button>
+</div>
+
+<header class="header">
+  <div class="header__grid">
+    <a class="cell header__wordmark mono" href="#hero" data-scramble-onload><span class="accent">NOE</span>SIS</a>
+    <button class="cell header__menu mono" type="button" aria-expanded="false" aria-controls="menu" data-menu data-scramble-onload>M</button>
+    <button class="cell header__theme" type="button" data-theme-toggle aria-label="Switch between light and dark">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor"/><path d="M8 2v12A6 6 0 0 0 8 2z" fill="currentColor"/></svg>
+    </button>
+  </div>
+  <nav id="menu" class="menu mono" hidden>
+    <a href="#numbers">measured</a><a href="#gate">the gate</a><a href="#ledger">the ledger</a><a href="#properties">what it does</a><a href="#footer">links</a>
+  </nav>
+</header>
+
+<main class="frame">
+  <section id="hero" class="section" aria-labelledby="hero-title">
+    <p class="label label--left mono">01. A personal agent</p>
+    <p class="label label--right mono">02. Runs on your machine</p>
+    <div class="cell install">
+      <div class="install__os" role="group" aria-label="Operating system">
+        <button type="button" data-install-os="unix" aria-pressed="true">macOS, Linux</button>
+        <button type="button" data-install-os="windows" aria-pressed="false">Windows</button>
+      </div>
+      <div class="install__line mono">
+        <code data-install-command tabindex="-1">git clone --filter=blob:none --sparse https://github.com/notjwp/Noesis.git &amp;&amp; cd Noesis &amp;&amp; python3 install.py</code>
+        <button type="button" class="install__copy" data-install-copy>copy</button>
+      </div>
+      <p class="install__note">Python 3.12+ and git. No Docker, no VM. The clone is about 1 MB.</p>
+    </div>
+    <h1 id="hero-title" class="display display--left" data-scramble>Judged<small>every tool call</small></h1>
+    <p class="display display--right" data-scramble>Measured<small>every number</small></p>
+    <p class="lede">Give it a goal in plain English — fix these tests, cut a release, answer my email — and it plans, uses tools, and works until it is done or tells you why it stopped.</p>
+    <pre class="cell terminal mono" data-terminal aria-live="off">&gt; noesis "fix the failing tests in tests/"
+act  read_file tests/test_parse.py
+gate read_file classified read                    <span data-verdict="auto">auto</span></pre>
+    <p class="readout mono" data-readout="sphere">sphere: —</p>
+  </section>
+
+  <section id="numbers" class="section" aria-labelledby="numbers-title">
+    <div class="h2-wrap">
+      <h2 id="numbers-title" class="h2" data-scramble>Measured, not claimed</h2>
+      <p class="sub">Every change is scored three times per case and kept only if a number moved. The agent is never the judge of its own success.</p>
+    </div>
+    <a class="cell box mono" href="https://github.com/notjwp/Noesis/blob/main/eval/CHANGELOG.md">Read the changelog</a>
+    <div class="cell cell--scroll numbers">
+      <table>
+        <thead><tr><th scope="col">split</th><th scope="col">what it measures</th><th scope="col" style="text-align:right">score</th></tr></thead>
+        <tbody>
+          <tr><td class="split">dev</td><td>bug fixes in small projects</td><td class="score mono">15/15</td></tr>
+          <tr><td class="split">held out</td><td>the same, on cases never tuned against</td><td class="score mono">30/30</td></tr>
+          <tr class="real"><td class="split">real repositories</td><td>six real projects, real bugs</td><td class="score mono">9/18</td></tr>
+          <tr><td class="split">tools</td><td>long-running processes, asking the user</td><td class="score mono">9/9</td></tr>
+          <tr><td class="split">search / web</td><td>finding things out</td><td class="score mono">9/9 · 18/18</td></tr>
+          <tr><td class="split">memory recall</td><td>remembering across sessions</td><td class="score mono">85.7%</td></tr>
+          <tr><td class="split">skills</td><td>loading the right procedure</td><td class="score mono">94.4%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footnote">Model <code class="mono">nvidia/nemotron-3-super-120b-a12b</code> on NVIDIA's free tier. 1,197 offline tests run with no API key and no network. <code class="mono">real</code> is the one split with headroom and has been flat since early September — 10, 11 and 9 of 18 across three runs of the same code — recorded as flat, not as progress. Two of its six cases have never passed on this model.</p>
+    <p class="readout mono" data-readout="cell">clip-path: —</p>
+  </section>
+
+  <section id="gate" class="section" aria-labelledby="gate-title">
+    <div class="h2-wrap">
+      <h2 id="gate-title" class="h2" data-scramble>Every call is judged before it runs</h2>
+      <p class="sub">Four nodes in a loop, and only one of them talks to a model.</p>
+    </div>
+    <div class="cell node node--act">act<small>→ model</small></div>
+    <div class="cell node node--gate">gate<small>no API key needed</small></div>
+    <div class="cell node node--execute">execute<small>no API key needed</small></div>
+    <div class="cell node node--reflect">reflect<small>no API key needed</small></div>
+    <pre class="cell terminal mono trace" data-trace>&gt; noesis "fix the failing tests in tests/"
+act  read_file tests/test_parse.py
+gate read_file classified read                    <span data-verdict="auto">auto</span>
+
+act  run_shell rm -rf build
+gate run_shell is destructive (recursive delete)  <span data-verdict="confirm">confirm</span>
+     [a]llow  [s]ession  [d]eny  [q]uit &gt;
+
+act  run_shell rm -rf ~
+gate run_shell is deleting the root or home directory;
+     refused, and no approval can allow it        <span data-verdict="deny">deny</span></pre>
+    <div class="cell tier tier--auto">
+      <h3>auto</h3>
+      <p>Reads, searches, edits and commands inside the workspace. Reads outside it too — it is your assistant and those are your files.</p>
+    </div>
+    <div class="cell tier tier--confirm">
+      <h3>confirm</h3>
+      <p>Recursive deletes, force-push, <code class="mono">sudo</code>, writing <code class="mono">/etc</code> or the shell profile, reading <code class="mono">.ssh</code> or <code class="mono">.env</code>, piping the internet into a shell, a program run through a read-only tool's flag. Unattended, these are refused.</p>
+      <p><code class="mono">s</code> allows that rule for the rest of the session: <code class="mono">rm -rf build</code> once and recursive deletes stop asking, but a force-push still asks.</p>
+    </div>
+    <div class="cell tier tier--deny">
+      <h3>deny, even if you say yes</h3>
+      <p>Deleting <code class="mono">/</code> or your home directory, writing a block device, formatting a filesystem, shutting the machine down, a fork bomb.</p>
+      <p>Saying allow trusts it with your files. It does not trust it with the disk.</p>
+    </div>
+    <p class="footnote native">On your machine, natively — no container. The gate is the whole boundary, a deliberate trade: a sandbox would keep it from the files a personal assistant exists to read. <code class="mono">noesis --doctor</code> says which one you are in.</p>
+  </section>
+
+  <section id="ledger" class="section" aria-labelledby="ledger-title">
+    <div class="h2-wrap">
+      <h2 id="ledger-title" class="h2" data-scramble><span class="accent">Kept</span> · <span class="refuse">Reverted</span> · <span class="muted">Off by default</span></h2>
+      <p class="sub">A month of change-one-thing cycles. The ones that did not make it stay on the record.</p>
+    </div>
+    <div class="cell row" data-kind="kept"><span class="verdict">kept</span><span><code class="mono">edit_file</code>, a targeted edit, described as one</span><span class="figure">real repositories 0/9 → 4/7</span></div>
+    <div class="cell row" data-kind="kept"><span class="verdict">kept</span><span>turn cap 12 → 30; runs were starved of turns, not tokens</span><span class="figure">dev 13/15 → 15/15</span></div>
+    <div class="cell row" data-kind="kept"><span class="verdict">kept</span><span>dense retrieval over keyword search for memory, on 170 episodes</span><span class="figure">0/40 → 37/40</span></div>
+    <div class="cell row" data-kind="kept"><span class="verdict">kept</span><span>extract lessons at session end instead of asking the model to</span><span class="figure">authoring 3.3% → 11/11</span></div>
+    <div class="cell row" data-kind="reverted"><span class="verdict">reverted</span><span>hybrid keyword + dense retrieval; the gain was a bug, and fixed it scored 3/6</span><span class="figure">6/6 against 5/6</span></div>
+    <div class="cell row" data-kind="reverted"><span class="verdict">reverted</span><span>naming line numbers on ambiguous edits</span><span class="figure">0/3 → 0/3</span></div>
+    <div class="cell row" data-kind="reverted"><span class="verdict">reverted</span><span>two nudges for a stalled run</span><span class="figure">fired 0 of 30 and 1 of 15</span></div>
+    <div class="cell row" data-kind="off"><span class="verdict">off</span><span>a planning phase before acting; still there as <code class="mono">/plan</code></span><span class="figure">+30% tokens, same pass rate</span></div>
+    <div class="cell row" data-kind="off"><span class="verdict">off</span><span>rewriting a skill the run found wanting; it flagged good skills — 6 of the 7 it marked had passed</span><span class="figure">real 3/3 vs 1/3</span></div>
+    <p class="readout mono" data-readout="ledger">rows: 9 · kept 4 · reverted 3 · off 2</p>
+  </section>
+
+  <section id="properties" class="section" aria-labelledby="properties-title">
+    <h2 id="properties-title" class="visually-hidden">What it does</h2>
+    <div class="cell prop">
+      <p class="label mono">03. It remembers</p>
+      <h3>What you told it, what worked, how you like things done.</h3>
+      <p>Across sessions, in a local SQLite file you can open. A runbook it reads becomes a skill it loads next time the same kind of work comes up.</p>
+    </div>
+    <div class="cell prop">
+      <p class="label mono">04. It can be left alone</p>
+      <h3>Queue tasks, schedule them with cron, point it at a mailbox.</h3>
+      <p>Default deny: it answers only senders you list. State is written after every step, so it survives being killed mid-task and resumes from where it was.</p>
+    </div>
+    <div class="cell prop">
+      <p class="label mono">05. It runs where you are</p>
+      <h3>Python 3.12+. Any OpenAI-compatible endpoint, or Anthropic.</h3>
+      <p>NVIDIA's free tier is the default. <code class="mono">noesis --doctor</code> checks every precondition, prints one line per item, and changes nothing.</p>
+    </div>
+  </section>
+
+  <footer id="footer" class="section" aria-label="Links">
+    <div class="links">
+      <a href="https://github.com/notjwp/Noesis">github</a>
+      <a href="https://github.com/notjwp/Noesis#readme">readme</a>
+      <a href="https://github.com/notjwp/Noesis/blob/main/eval/CHANGELOG.md">changelog</a>
+      <a href="#hero">install</a>
+    </div>
+    <p class="footnote">Every figure on this page is in the README and <code class="mono">eval/CHANGELOG.md</code>, next to the runs that produced it and the changes that did not make it.</p>
+    <p class="readout mono" data-readout="scroll">scroll: —</p>
+  </footer>
+</main>
+
+<div class="ruler" aria-hidden="true"><div class="ruler__ticks"></div><div class="ruler__marker"></div></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
