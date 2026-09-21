@@ -32,7 +32,6 @@ export async function runLoader({ milestones = [], floorMs = 2600, capMs = 6000 
   const onKey = e => { if (e.key === 'Escape' || e.key === 'Enter') skip(); };
   skipBtn.addEventListener('click', skip); addEventListener('keydown', onKey); skipBtn.focus();
 
-  scramble(el.querySelector('[data-boot-mark]'), { duration: 1200 });
   typeDots(el.querySelector('[data-boot-dots]')).then(() => scramble(el.querySelector('[data-boot-ok]'), { duration: 300 }));
 
   const start = performance.now();

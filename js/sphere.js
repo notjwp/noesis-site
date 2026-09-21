@@ -6,12 +6,13 @@ import * as THREE from '../vendor/three/three.module.min.js';
 // opacity multiplier for states that sit behind text.
 export const STATES = {
   idle:     { color: '--text',   amp: 0.18, order: 0, x: 0,    breathe: 0, dim: 1 },
+  install:  { color: '--text',   amp: 0.18, order: 0, x: 0.34, breathe: 0, dim: 1 },   // clear of the install block
   measured: { color: '--accent', amp: 0.06, order: 1, x: -0.3, breathe: 0, dim: 1 },
   gate:     { color: '--accent', amp: 0.25, order: 0, x: 0.3,  breathe: 0, dim: 1 },
   ledger:   { color: '--gold',   amp: 0.30, order: 0, x: 0.3,  breathe: 0, dim: 1 },
   memory:   { color: '--violet', amp: 0.50, order: 0, x: 0,    breathe: 1, dim: 0.5 },   // sits behind text
 };
-const BY_SECTION = { hero: 'idle', numbers: 'measured', gate: 'gate', ledger: 'ledger', properties: 'memory', footer: 'idle' };
+const BY_SECTION = { install: 'install', hero: 'idle', numbers: 'measured', gate: 'gate', ledger: 'ledger', properties: 'memory', footer: 'idle' };
 export function stateFor(id) { return BY_SECTION[id] ?? 'idle'; }
 
 export function fibonacciSphere(n) {

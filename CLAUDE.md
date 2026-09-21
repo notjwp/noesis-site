@@ -95,7 +95,7 @@ draws a brighter inset border on hover via `clip-path` — the readout in `#numb
 live value.
 
 The sphere (`js/sphere.js`): 14,000 points (7,000 on phones), one state per section —
-`idle` (text colour, centre), `measured` (accent, snapped to a lattice, left), `gate` (accent,
+`install` (text colour, parked right of the install block), `idle` (text colour, centre), `measured` (accent, snapped to a lattice, left), `gate` (accent,
 right; `deny` ejects 3 % of points in `--refuse`, `confirm` pauses rotation, `auto` flashes),
 `ledger` (gold, right; hovering a row tints it by verdict), `memory` (violet, breathing, dimmed
 behind the property cells). The section crossing the middle of the viewport owns it.
@@ -109,13 +109,16 @@ visibly on a slow load; hard cap 6 s; `SKIP LOADING`, `Esc` or `Enter` end it.
 
 1. `#boot` — the HUD loader.
 2. Header — `NOE`+`SIS`, `M` menu, the theme icon.
-3. `#hero` — labels, **the install line first** (OS toggle, command, copy), `JUDGED` /
-   `MEASURED` either side of the sphere, one sentence, the cycling terminal, a sphere readout.
-4. `#numbers` — "Measured, not claimed", the README's scores table, the model/tests/`real`
+3. `#install` — **the installer, a section of its own and the first thing under the header**:
+   the README's block-letter NOESIS mark centred as the page's `h1`, then `01. Install`, "Not curl | sh", the requirements sub-line, OS toggle, the full command with copy,
+   the virtualenv/PATH note and the first-run / `noesis --update` note. The sphere parks to its right.
+4. `#hero` — labels, `JUDGED` / `MEASURED` either side of the sphere, one sentence, the cycling
+   terminal, a sphere readout.
+5. `#numbers` — "Measured, not claimed", the README's scores table, the model/tests/`real`
    footnote, `Read the changelog`.
-5. `#gate` — `act → gate → execute → reflect`, the trace that types the three verdicts, the
+6. `#gate` — `act → gate → execute → reflect`, the trace that types the three verdicts, the
    three tiers, the no-container line.
-6. `#ledger` — kept / reverted / off by default, nine rows from `eval/CHANGELOG.md`.
-7. `#properties` — it remembers, it can be left alone, it runs where you are.
-8. `#footer` — github · readme · changelog · install, and the one-line provenance note.
-9. The ruler — fixed at the bottom, its marker is scroll progress.
+7. `#ledger` — kept / reverted / off by default, nine rows from `eval/CHANGELOG.md`.
+8. `#properties` — it remembers, it can be left alone, it runs where you are.
+9. `#footer` — github · readme · changelog · install, and the one-line provenance note.
+10. The ruler — fixed at the bottom, its marker is scroll progress.

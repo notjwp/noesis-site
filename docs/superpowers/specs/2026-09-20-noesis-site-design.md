@@ -302,3 +302,14 @@ changes that did not make it."* Sphere back to **idle**.
   their cells.
 - Budget: three.js ~170 KB gz, own code < 40 KB, two fonts. Lighthouse ≥ 90 / 90 / 90 with the
   loader skipped.
+
+## Follow-up 2 — the installer gets its own section (owner request, 2026-09-20)
+
+`#install` is now the first section under the header, before `#hero`: the block-letter NOESIS
+mark centred as the page's `h1` (the hero's `Judged` becomes an `h2`), label `01. Install`,
+heading `Not curl | sh` / *an installer the agent's own gate would run*, the requirements sub-line (clone ≈ 1 MB; pip dependencies ≈ 130 MB, both README figures), the OS toggle, the full command (fits one line at
+20 and 16 columns), copy, and two notes from the README — *Not `curl | sh`, deliberately…* and
+*Then `noesis`… Updating later is `noesis --update`.* The hero keeps the words, sentence,
+terminal and readout; labels renumber `02.`–`06.`. The sphere gains an `install` state (idle
+colours, parked right) so it stays clear of the block; `stateFor('install') → 'install'`. Menu
+and footer `install` anchors point at `#install`.

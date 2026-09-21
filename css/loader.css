@@ -25,7 +25,11 @@ html[data-state="booting"] #boot { display: block; }
   padding: 32px 40px;
   transition: transform 300ms ease-in, opacity 300ms ease-in;
 }
-.boot__mark { margin: 0 0 20px; font-size: clamp(6px, 1.2vw, 12px); line-height: 1.1; white-space: pre; color: var(--accent); overflow: hidden; }
+.boot__mark { margin: 0 auto 20px; width: min(100%, 420px); color: var(--accent); line-height: 0;
+  clip-path: inset(0 100% 0 0); animation: boot-mark 1200ms steps(24, end) 200ms forwards; }
+.boot__mark .mark__svg { width: 100%; height: auto; display: block; }
+@keyframes boot-mark { to { clip-path: inset(0); } }
+@media (prefers-reduced-motion: reduce) { .boot__mark { animation: none; clip-path: none; } }
 .boot__title { margin: 0 0 16px; color: var(--text); text-align: center; }
 .boot__row { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; }
 .boot__chip { border: 1px solid var(--accent); padding: 8px 12px; }

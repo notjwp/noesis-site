@@ -2,8 +2,8 @@ import { test, eq, approx } from './harness.js';
 import { STATES, stateFor, fibonacciSphere, latticeOf } from '../js/sphere.js';
 
 test('stateFor maps sections to states, unknown → idle', () => {
-  eq(['hero', 'numbers', 'gate', 'ledger', 'properties', 'footer', 'nope'].map(stateFor),
-     ['idle', 'measured', 'gate', 'ledger', 'memory', 'idle', 'idle']);
+  eq(['install', 'hero', 'numbers', 'gate', 'ledger', 'properties', 'footer', 'nope'].map(stateFor),
+     ['install', 'idle', 'measured', 'gate', 'ledger', 'memory', 'idle', 'idle']);
 });
 test('every state names a colour token and the shader knobs', () => {
   for (const s of Object.values(STATES)) {
